@@ -1,4 +1,4 @@
-package data
+package test
 
 import (
 	"log"
@@ -9,6 +9,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	_ "github.com/denisenkom/go-mssqldb"
 	"github.com/joho/godotenv"
+	"github.com/DaviFernandes034/SGE--gestao-de-estoque/data"
+
 )
 
 func TestConn(t *testing.T) {
@@ -28,7 +30,7 @@ func TestConn(t *testing.T) {
 	log.Printf("DB_SERVER: %s, DB_PORT: %s, DB_USER: %s, DB_PASSWORD: %s, DB_DATABASE: %s", dbServer, dbPort, dbUser, dbPassword, dbDatabase)
 
 	// Chamar a função Conn e verificar se não há erros
-	db, err := Conn()
+	db, err := data.Conn()
 	assert.NoError(t, err, "erro ao se conectar ao banco de dados")
 	assert.NotNil(t, db, "a conexão com o banco de dados deve ser não nula")
 

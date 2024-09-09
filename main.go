@@ -29,12 +29,15 @@ func main() {
 
 	//carregando as rotas
 
-	// rotaedor gin
+	// roteador gin
 	r := gin.Default()
 
 	//configurar as rotas
 
-	routers.ConfigRoutersCategory(r)
+	r.POST("/categorias", routers.PostCategoria(db))
+	r.GET("/categoria/:id", routers.GetCategoria(db))
+	
+
 
 	//iniciar o servidr na porta 8080
 
