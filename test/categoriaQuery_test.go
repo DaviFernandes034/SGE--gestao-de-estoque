@@ -6,8 +6,7 @@ import (
 
 	
 	"github.com/DATA-DOG/go-sqlmock"
-	"github.com/DaviFernandes034/SGE--gestao-de-estoque/data/querys")
-
+)
 
 	func TestInsertCategoria(t *testing.T) {
 		// Cria o mock do banco de dados

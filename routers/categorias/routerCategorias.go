@@ -5,25 +5,23 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/DaviFernandes034/SGE--gestao-de-estoque/data/querys"
+	"github.com/DaviFernandes034/SGE--gestao-de-estoque/services"
 	"github.com/DaviFernandes034/SGE--gestao-de-estoque/models"
 	"github.com/gin-gonic/gin"
 )
 
+func GetAllCategoriaRouter(db *sql.DB) gin.HandlerFunc{
 
-func ConfigRoutersCategory(r *gin.Engine){
+	return func (c *gin.Context){
 
-	r.GET("/all", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message":"OK",
-		})
-	})
+		categorias, err:= services.GetAllCategoria(db)
+		if err != nil{
+			c.JSON(http.StatusInternalServerError, gin.H{"erro": err.Error() })
+			return
+		}
+			c.JSON(http.StatusOK, categorias)
 
-	
-	
-
-
-
+	}
 }
 
 func GetCategoria(db *sql.DB) gin.HandlerFunc{
@@ -42,7 +40,7 @@ func GetCategoria(db *sql.DB) gin.HandlerFunc{
 
 
 		//chamando a funçao do banco de dados
-		categoriaID,categoriaNome,err:= querys.GetCategoria(db, categoriaID)
+		categoriaID,categoriaNome,err:= services.GetCategoria(db, categoriaID)
 		if err!= nil{
 			c.JSON(http.StatusInternalServerError, gin.H{"erro": "categoria nao encontrada"})
 			return
@@ -76,7 +74,7 @@ func PostCategoria(db *sql.DB) gin.HandlerFunc{
 	     
 	   //inserindo a categoria ao banco de dados
 
-	   categoriaId,err := querys.InsertCategoria(db, request.Nome)
+	   categoriaId,err := services.InsertCategoria(db, request.Nome)
 	   if err != nil{
 		   c.JSON(http.StatusInternalServerError, gin.H{"error":err.Error()})
 		   return
@@ -95,6 +93,27 @@ func PostCategoria(db *sql.DB) gin.HandlerFunc{
 
 	}
 	
+}
+
+func DeleteCategoria(db *sql.DB) gin.HandlerFunc{
+
+	return func(c *gin.Context) {
+
+		id:= c.Param("id")
+		categoriaId, err:= strconv.Atoi(id)
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "invalido"})
+			return
+		}
+
+		err = services.DeleteCategoria(db, categoriaId)
+		if err != nil{
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+
+		c.Status(http.StatusNoContent)
+	}
 }
 
 

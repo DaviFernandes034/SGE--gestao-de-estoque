@@ -32,10 +32,12 @@ func main() {
 	// roteador gin
 	r := gin.Default()
 
-	//configurar as rotas
+	//configurar as rotas CATEGORIA
 
 	r.POST("/categorias", routers.PostCategoria(db))
 	r.GET("/categoria/:id", routers.GetCategoria(db))
+	r.GET("/categoriaAll", routers.GetAllCategoriaRouter(db))
+	r.DELETE("/categoriaDelete/:id", routers.DeleteCategoria(db))
 	
 
 

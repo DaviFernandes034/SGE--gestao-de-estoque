@@ -32,7 +32,7 @@ func TestGetAll(t *testing.T){
 	//configura o router
 	r := gin.Default()
 
-	routers.ConfigRoutersCategory(r)
+	routers.GetAllCategoriaRouter(&sql.DB{})
 
 	//criando uma requisição GET
 	request,_:= http.NewRequest("GET", "/all", nil)
