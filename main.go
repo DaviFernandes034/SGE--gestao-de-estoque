@@ -38,6 +38,10 @@ func main() {
 	r.GET("/categoria/:id", routers.GetCategoria(db))
 	r.GET("/categoriaAll", routers.GetAllCategoriaRouter(db))
 	r.DELETE("/categoriaDelete/:id", routers.DeleteCategoria(db))
+
+	//rotas Status
+
+	r.POST("/status", routers.PostStatus(db))
 	
 
 
