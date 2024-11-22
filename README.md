@@ -20,7 +20,7 @@ Um sistema web de gestão de estoque desenvolvido em **Golang**, utilizando o fr
 
 - **Golang**: Linguagem principal para desenvolvimento do backend.
 - **Gin**: Framework para criação de APIs REST em Golang.
-- **Docker**: Para containerizar a aplicação.
+- **Docker** e **Docker Compose**: Para containerizar a aplicação.
 - **SQL Server**: Banco de dados utilizado para armazenar informações.
 - **Postman**: utilizado para testar as solicitação HTTP
 
@@ -37,4 +37,28 @@ Certifique-se de que você tem as seguintes ferramentas instaladas:
 
 1. Clone este repositório:
    ```bash
-   git clone 
+   git clone https://github.com/DaviFernandes034/SGE--gestao-de-estoque.git
+   cd SGE--gestao-de-estoque
+
+2. Configure seu arquivo .env com as configurações do seu banco de dados
+   ```bash
+      DB_HOST=localhost
+      DB_PORT=1433
+      DB_USER=seu_usuario
+      DB_PASSWORD=sua_senha
+      DB_NAME=nome_do_banco
+
+3. Configure o arquivo docker-compose.yml
+    - Certifique-se de que o arquivo já está configurado para orquestrar:
+        - Um container para o banco de dados SQL Server.   
+        - Um container para a aplicação em Golang.
+        - 
+4. Construa e inicialize os Conteiners:
+      ```bash
+       docker-compose up --build
+5. Acesse a aplicação:
+      ```bash
+      http://localhost:8080
+6. Verifique os logs:
+      ```bash
+         docker-compose logs -f
