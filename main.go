@@ -8,6 +8,7 @@ import (
 	"github.com/DaviFernandes034/SGE--gestao-de-estoque/routers/categorias"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+
 )
 
 func main() {
@@ -42,10 +43,13 @@ func main() {
 	//rotas Status
 
 	r.POST("/status", routers.PostStatus(db))
+	r.GET("/status/:id", routers.GetStatus(db))
+	r.GET("/statusAll", routers.GetStatusAll(db))
 	
 
+	
 
-	//iniciar o servidr na porta 8080
+	//iniciar o servidor na porta 8080
 
 	port := os.Getenv("PORT")
 	if port == "" {
@@ -56,3 +60,6 @@ func main() {
 	r.Run(":" + port)
 
 }
+
+
+

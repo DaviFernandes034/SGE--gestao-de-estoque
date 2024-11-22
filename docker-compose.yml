@@ -1,0 +1,42 @@
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: SGE-banco-de-dados
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Password1!
+    volumes:
+      - sqlserver:/var/opt/mssql
+    restart: always
+    networks:
+      - sge-network
+
+  api:
+    build:
+      context: .
+    container_name: SGE-container
+    ports:
+      - "8080:8080"
+    environment:
+      DB_SERVER: ${DB_SERVER}
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_DATABASE: ${DB_DATABASE}
+      PORT: ${PORT}
+    volumes:
+      - ./SGE:/main
+    depends_on:
+      - db
+    networks:
+    - sge-network
+
+networks:
+      sge-network:
+        driver: bridge
+volumes:
+      sqlserver:
+     
+

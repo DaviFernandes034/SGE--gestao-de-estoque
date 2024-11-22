@@ -42,7 +42,7 @@ func GetCategoria(db *sql.DB) gin.HandlerFunc{
 		//chamando a funçao do banco de dados
 		categoriaID,categoriaNome,err:= services.GetCategoria(db, categoriaID)
 		if err!= nil{
-			c.JSON(http.StatusInternalServerError, gin.H{"erro": "categoria nao encontrada"})
+			c.JSON(http.StatusInternalServerError, gin.H{"erro": "categoria nao encontrada no servidor"})
 			return
 		}
 
@@ -54,6 +54,7 @@ func GetCategoria(db *sql.DB) gin.HandlerFunc{
 
 		c.JSON(http.StatusOK, response) //status ok
 
+		
 		
 	}
 }
@@ -74,21 +75,15 @@ func PostCategoria(db *sql.DB) gin.HandlerFunc{
 	     
 	   //inserindo a categoria ao banco de dados
 
-	   categoriaId,err := services.InsertCategoria(db, request.Nome)
+	   err = services.InsertCategoria(db, request.Nome)
 	   if err != nil{
 		   c.JSON(http.StatusInternalServerError, gin.H{"error":err.Error()})
 		   return
 	   }
 
-	   //response
+	   
 
-	   response:= models.Categorias{
-		   
-		   Id_categoria: categoriaId,
-		   Nome: request.Nome,
-	   }
-
-	   c.JSON(http.StatusOK, response)
+	   c.JSON(http.StatusOK, gin.H{"observação": "categoria criada com sucesso!"})
 
 
 	}

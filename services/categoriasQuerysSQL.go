@@ -8,18 +8,18 @@ import (
 	"github.com/DaviFernandes034/SGE--gestao-de-estoque/models"
 )
 
-func InsertCategoria(db *sql.DB, categoria string) (int64, error) {
+func InsertCategoria(db *sql.DB, categoria string) (error) {
 
 	//verificando se a categoria ja existe
 	var exists bool
 
 	err := db.QueryRow("select count(*) from Categorias where nome = @nome", sql.Named("nome", categoria)).Scan(&exists)
 	if err != nil {
-		return 0, errors.New("erro ao verificar a existencia da categoria")
+		return errors.New("erro ao verificar a existencia da categoria")
 	}
 
 	if exists {
-		return 0, errors.New("categoria ja existente")
+		return errors.New("categoria ja existente")
 	}
 	//query para adicionar uma categoria
 	querys := "insert into Categorias (nome) values(@nome); SELECT SCOPE_IDENTITY();"
@@ -29,15 +29,15 @@ func InsertCategoria(db *sql.DB, categoria string) (int64, error) {
 
 	err = db.QueryRow(querys, sql.Named("nome", categoria)).Scan(&lastId)
 	if err != nil {
-		return 0, fmt.Errorf("erro ao inserir a categoria: %v", err)
+		return fmt.Errorf("erro ao inserir a categoria: %v", err)
 	}
 
 	//verificando se o id é valido
 	if !lastId.Valid {
-		return 0, fmt.Errorf("erro ao recuperar id gerado %v", err)
+		return fmt.Errorf("erro ao recuperar id gerado %v", err)
 	}
 
-	return lastId.Int64, nil
+	return nil
 }
 
 func GetCategoria(db *sql.DB, categoriaID int64) (int64, string, error) {
@@ -70,7 +70,7 @@ func GetAllCategoria(db *sql.DB) ([]models.Categorias, error) {
 		return nil, fmt.Errorf("erro ao buscar as categorias: %v", err)
 	}
 
-	defer rows.Close() //fechando a con com o db
+	defer rows.Close() //fechando as linhas
 
 	var categorias []models.Categorias // criando o slice para armazenar as categorias
 
