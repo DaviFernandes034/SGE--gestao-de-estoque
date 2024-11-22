@@ -3,7 +3,7 @@ SGEmodelagem.pdf
 sgebd.mdj
 Main.png
 .gitignore
-test
+./test
 
 comando para verificar se os container estar na mesma rede;
  - docker network inspect <nome da rede>
