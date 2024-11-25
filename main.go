@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/DaviFernandes034/SGE--gestao-de-estoque/data" // Importa o pacote data
-	"github.com/DaviFernandes034/SGE--gestao-de-estoque/routers/categorias"
+	"github.com/DaviFernandes034/SGE--gestao-de-estoque/routers"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 
