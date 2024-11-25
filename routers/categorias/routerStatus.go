@@ -81,3 +81,23 @@ func GetStatusAll(db *sql.DB) gin.HandlerFunc{
 		c.JSON(http.StatusOK, status)
 	}
 }
+
+func DeleteStatus(db *sql.DB) gin.HandlerFunc{
+
+	return func(c *gin.Context) {
+
+		id:= c.Param("id")
+		statusId,err:= strconv.Atoi(id)
+		if err != nil{
+
+			c.JSON(http.StatusBadRequest, gin.H{"erro": "ID invalido"})
+		}
+
+		err = services.DeleteStatus(db, statusId)
+		if err != nil{
+				c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		}
+
+		c.Status(http.StatusNoContent)
+	}
+}

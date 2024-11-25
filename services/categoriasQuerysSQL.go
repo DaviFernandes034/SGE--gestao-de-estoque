@@ -115,7 +115,7 @@ func DeleteCategoria(db *sql.DB, Categoria_id int) error {
 	}
 
 	if rows == 0 {
-		return fmt.Errorf("nenhuma categoria encontrada com o id: %d, %v", Categoria_id, err)
+		return fmt.Errorf("nenhuma categoria encontrada com o id: %d.", Categoria_id)
 	}
 
 	return nil

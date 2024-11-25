@@ -28,8 +28,6 @@ services:
       PORT: ${PORT}
     volumes:
       - ./SGE:/main
-    depends_on:
-      - db
     networks:
     - sge-network
 

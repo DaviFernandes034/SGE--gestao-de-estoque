@@ -43,7 +43,6 @@ func InsertStatus(db *sql.DB, status string)( error){
 	return  nil
 }
 
-
 func GetStatus(db *sql.DB, statusID int64)(int64, string, error){
 
 	query:= " select ID_Status, nome from status where ID_Status = @statusID"
@@ -96,5 +95,28 @@ func GetAllstatus(db *sql.DB)([]models.Status, error){
 	}
 
 	return statusSlice, nil
+}
+
+func DeleteStatus(db *sql.DB, id_status int) (error){
+
+	query:= "delete from status where ID_Status = @id_status"
+
+	result, err:= db.Exec(query, sql.Named("id_status", id_status))
+	if err != nil{
+		return fmt.Errorf("erro ao deletar um status: %v", err)
+	}
+
+	row, err:= result.RowsAffected()
+	if err != nil{
+
+		return fmt.Errorf("erro ao verificar as linhas alteradas: %v", err)
+	}
+
+	if row == 0{
+		return fmt.Errorf("nenhum status encontrado com o id: %d", id_status)
+	}
+
+	return nil
+
 }
 

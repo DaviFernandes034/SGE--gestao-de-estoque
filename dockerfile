@@ -17,4 +17,4 @@ RUN go mod tidy && go build -o app main.go
 EXPOSE 8080
 
 #comando para rodar o app
-CMD [ "./main" ]
+CMD [ "./app" ]

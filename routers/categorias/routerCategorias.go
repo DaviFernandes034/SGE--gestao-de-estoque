@@ -97,7 +97,7 @@ func DeleteCategoria(db *sql.DB) gin.HandlerFunc{
 		id:= c.Param("id")
 		categoriaId, err:= strconv.Atoi(id)
 		if err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": "invalido"})
+			c.JSON(http.StatusBadRequest, gin.H{"error": " ID invalido"})
 			return
 		}
 
