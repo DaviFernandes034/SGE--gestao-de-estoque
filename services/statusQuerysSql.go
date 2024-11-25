@@ -8,19 +8,19 @@ import (
 	"github.com/DaviFernandes034/SGE--gestao-de-estoque/models"
 )
 
-func InsertStatus(db *sql.DB, status string)(int64, error){
+func InsertStatus(db *sql.DB, status string)( error){
 
 	//vendo se o status ja existe
 	var exists bool
 
 	err:= db.QueryRow("select count(*) from status where nome = @nome",sql.Named("nome", status)).Scan((&exists))
 	if err != nil{
-		return 0, errors.New("erro ao verificar a existencia do Status")
+		return  errors.New("erro ao verificar a existencia do Status")
 
 	}
 
 	if exists {
-		return 0, errors.New("status ja existente")
+		return  errors.New("status ja existente")
 	}
 
 	// query para adicionar um status
@@ -31,16 +31,16 @@ func InsertStatus(db *sql.DB, status string)(int64, error){
 
 	err = db.QueryRow(query,sql.Named("nome", status)).Scan((&lastId))
 	if err != nil {
-		return 0, fmt.Errorf("erro ao inserir um status: %v", err)
+		return fmt.Errorf("erro ao inserir um status: %v", err)
 
 	}
 
 	//vendo se o id é valido
 	if !lastId.Valid{
-		return 0, fmt.Errorf("erro ao recuperar id gerado: %v", err)
+		return fmt.Errorf("erro ao recuperar id gerado: %v", err)
 	}
 
-	return lastId.Int64, nil
+	return  nil
 }
 
 
@@ -97,3 +97,4 @@ func GetAllstatus(db *sql.DB)([]models.Status, error){
 
 	return statusSlice, nil
 }
+

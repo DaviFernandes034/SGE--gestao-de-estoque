@@ -25,21 +25,16 @@ func PostStatus(db *sql.DB) gin.HandlerFunc{
 	}
 
 	//inserindo um novo status
-	statusId, err:= services.InsertStatus(db, request.Nome)
+	err = services.InsertStatus(db, request.Nome)
 	if err != nil{
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	
 	}
 
-	//response
+	
 
-	response:= models.Status{
-		Id_status: int(statusId),
-		Nome: request.Nome,
-	}
-
-	c.JSON(http.StatusOK, response)
+	c.JSON(http.StatusOK, gin.H{"Observação": "Status adicionado com sucesso"})
  }
 }
 
