@@ -68,7 +68,7 @@ func PostCategoria(db *sql.DB) gin.HandlerFunc{
 		
 		err:= c.BindJSON(&request)
 		if  err != nil{
-		   c.JSON(http.StatusBadRequest, gin.H{"error": "dados invalidos"})
+		   c.JSON(http.StatusBadRequest, gin.H{"erro": "dados invalidos"})
 		   return
 	   }
 
