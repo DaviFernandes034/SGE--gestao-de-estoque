@@ -43,9 +43,14 @@ func main() {
 	//rotas Status
 
 	r.POST("/status", routers.PostStatus(db))
-	r.GET("/status/:id", routers.GetStatus(db))
+	r.GET("/status/:id", routers.GetStatus(db)) 
 	r.GET("/statusAll", routers.GetStatusAll(db))
 	r.DELETE("/statusDelete/:id", routers.DeleteStatus(db))
+
+
+	//rotas Produtos
+
+	r.POST("/produtos", routers.PostProduto(db))
 
 	
 
