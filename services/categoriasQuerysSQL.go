@@ -13,7 +13,8 @@ func InsertCategoria(db *sql.DB, categoria string) (error) {
 	//verificando se a categoria ja existe
 	var exists bool
 
-	err := db.QueryRow("select count(*) from Categorias where nome = @nome", sql.Named("nome", categoria)).Scan(&exists)
+	err := db.QueryRow("select count(*) from Categorias where nome = @nome",
+	sql.Named("nome", categoria)).Scan(&exists)
 	if err != nil {
 		return errors.New("erro ao verificar a existencia da categoria")
 	}
