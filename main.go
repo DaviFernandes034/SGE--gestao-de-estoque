@@ -35,22 +35,25 @@ func main() {
 
 	//configurar as rotas CATEGORIA
 
-	r.POST("/categorias", routers.PostCategoria(db))
+	r.POST("/categoria", routers.PostCategoria(db))
 	r.GET("/categoria/:id", routers.GetCategoria(db))
 	r.GET("/categoriaAll", routers.GetAllCategoriaRouter(db))
 	r.DELETE("/categoriaDelete/:id", routers.DeleteCategoria(db))
-
 	//rotas Status
-
 	r.POST("/status", routers.PostStatus(db))
 	r.GET("/status/:id", routers.GetStatus(db)) 
 	r.GET("/statusAll", routers.GetStatusAll(db))
 	r.DELETE("/statusDelete/:id", routers.DeleteStatus(db))
-
-
 	//rotas Produtos
-
-	r.POST("/produtos", routers.PostProduto(db))
+	r.POST("/produto", routers.PostProduto(db))
+	r.GET("/produtoAll", routers.GetAllProdutos(db))
+	r.GET("/produto/:id", routers.GetProduto(db))
+	r.DELETE("/produtoDelete/:id", routers.DeleteProduto(db))
+	// rotas controle
+	r.POST("/controle", routers.PostControle(db))
+	r.GET("/controleAll", routers.GetAllControle(db))
+	r.GET("controle/:id", routers.GetControle(db))
+	r.DELETE("controleDelete/:id", routers.DeleteControle(db))
 
 	
 
