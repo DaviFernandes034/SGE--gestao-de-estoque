@@ -11,7 +11,8 @@ import (
 )
 
 
-func InsertProduto(db *sql.DB, categoriaId int64,nome string, preco float64, lote string, validade time.Time)(error){
+func InsertProduto(db *sql.DB, categoriaId int64,nome string,
+	 preco float64, lote string, validade time.Time)(error){
 
 
 	var exists bool
@@ -72,7 +73,7 @@ func InsertProduto(db *sql.DB, categoriaId int64,nome string, preco float64, lot
 
 func GetAllProdutos(db *sql.DB)([]models.ProdutosRequest, error){
 
-	query:= `SELECT p.ID_Produto, p.nome, p.preco, p.lote, p.validade,p.ID_Categoria, 
+	query:= `SELECT p.ID_Produto, p.nome, p.preco, p.lote, p.validade, 
 			c.ID_Categoria,c.nome
 			from Produtos p
 			INNER JOIN Categorias c
@@ -94,21 +95,19 @@ func GetAllProdutos(db *sql.DB)([]models.ProdutosRequest, error){
 	for rows.Next(){
 
 		var produto models.ProdutosRequest
-		var categoria models.Categorias
 
 		if err:= rows.Scan(&produto.Id_produto, 
 			&produto.Nome, 
 			&produto.Preco, 
 			&produto.Lote,
 			&produto.Validade, 
-			&produto.CategoriaId,
-			&categoria.Id_categoria,
-			&categoria.Nome); err != nil{
+			&produto.Categoria.Id_categoria,
+			&produto.Categoria.Nome); err != nil{
 
 			return nil, fmt.Errorf("erro ao escanear os produtos")
 		}
 
-		produto.Categoria = categoria
+
 		produtos = append(produtos, produto)
 
 	}
@@ -122,9 +121,9 @@ func GetAllProdutos(db *sql.DB)([]models.ProdutosRequest, error){
 }
 
 
-func GetProduto(db *sql.DB, id_produto int64)(models.ProdutosRequest,models.Categorias, error){
+func GetProduto(db *sql.DB, id_produto int64)(models.ProdutosRequest, error){
 
-	query:= `SELECT p.ID_Produto, p.nome, p.preco, p.lote, p.validade,p.ID_Categoria, 
+	query:= `SELECT p.ID_Produto, p.nome, p.preco, p.lote, p.validade, 
 			c.ID_Categoria,c.nome
 			from Produtos p
 			INNER JOIN Categorias c
@@ -134,25 +133,21 @@ func GetProduto(db *sql.DB, id_produto int64)(models.ProdutosRequest,models.Cate
 
 		
 		var produto models.ProdutosRequest
-		var categoria models.Categorias
 
 		err:= db.QueryRow(query, sql.Named("id_produto", id_produto)).Scan(&produto.Id_produto, 
 			&produto.Nome, 
 			&produto.Preco, 
 			&produto.Lote,
 			&produto.Validade, 
-			&produto.CategoriaId,
-			&categoria.Id_categoria,
-			&categoria.Nome)
+			&produto.Categoria.Id_categoria,
+			&produto.Categoria.Nome)
 		if err != nil{
 
-			return models.ProdutosRequest{},models.Categorias{},
+			return models.ProdutosRequest{},
 			fmt.Errorf("erro ao mostrar o produto: %v", err)
 		}
 
-		produto.Categoria = categoria
-
-		return produto, categoria, nil
+		return produto, nil
 
 }
 

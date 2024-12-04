@@ -65,7 +65,7 @@ func GetProduto(db *sql.DB) gin.HandlerFunc{
 			return
 		}
 
-		produto,categoria, err:= services.GetProduto(db, produtoId)
+		produto, err:= services.GetProduto(db, produtoId)
 		if err != nil{
 			c.JSON(http.StatusInternalServerError, 
 			gin.H{"erro":"Produto não encontrado no servidor"})
@@ -78,10 +78,9 @@ func GetProduto(db *sql.DB) gin.HandlerFunc{
 			Nome: produto.Nome,
 			Lote: produto.Lote,
 			Validade: produto.Validade,
-			CategoriaId: produto.CategoriaId,
 			Categoria: models.Categorias{
-				Id_categoria: categoria.Id_categoria,
-				Nome: categoria.Nome,
+				Id_categoria: produto.Categoria.Id_categoria,
+				Nome: produto.Categoria.Nome,
 			},
 		}
 

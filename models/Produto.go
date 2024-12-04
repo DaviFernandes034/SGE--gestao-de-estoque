@@ -25,8 +25,7 @@ type ProdutosRequest struct{
 	Nome string `json:"nome"`
 	Preco float64 `json:"preco"`
 	Lote string `json:"lote"`
-    Validade time.Time `json:validade`
-	CategoriaId int64 `json:categoriaId`
+    Validade time.Time `json:validade` 
 	Categoria Categorias `json:"categoria"`
 	
 	
