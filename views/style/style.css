@@ -1,0 +1,55 @@
+h1 {
+
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+html, body {
+    overflow: hidden; /* Remove a barra de rolagem de toda a página */
+    margin: 0;        /* Remove margens padrão */
+    padding: 0;       /* Remove padding padrão */
+}
+
+button {
+    border: none;       /* Remove a borda */
+    outline: none;      /* Remove o contorno ao focar */
+    background: #adadad; /* Cor de fundo */
+    color: white;        /* Cor do texto */
+    padding: 10px 20px;  /* Espaçamento interno */
+    font-size: 16px;     /* Tamanho do texto */
+    cursor: pointer;     /* Cursor muda para uma mãozinha */
+    border-radius: 100px;  /* Deixa as bordas arredondadas */
+  }
+  
+  button:hover {
+    background: #45a049; /* Muda a cor ao passar o mouse */
+  }
+  
+  
+
+
+
+#container {
+    display: flex;
+    height: 87vh;
+    flex-direction: column;
+    justify-content: flex-end; /* Move a div para baixo */
+    align-self:  center;
+   
+}
+
+#menu{
+
+    display: flex;
+    gap: 5%;
+}
+
+#menu img {
+    transition: transform 0.3s ease; /* Transição suave ao aplicar o efeito */
+    width: 110px;   /* Tamanho inicial da imagem */
+    height: auto;   /* Altura proporcional */
+}
+
+#menu img:hover {
+    transform: scale(1.2); /* Aumenta a imagem 20% quando o mouse passa por cima */
+}
