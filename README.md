@@ -23,6 +23,7 @@ Um sistema web de gestão de estoque desenvolvido em **Golang**, utilizando o fr
 - **Docker** e **Docker Compose**: Para containerizar a aplicação.
 - **SQL Server**: Banco de dados utilizado para armazenar informações.
 - **Postman**: utilizado para testar as solicitação HTTP
+- **HTML, CSS E JAVASCRIPT**: Para o front-end simples
 
 ## Como Rodar o Projeto
 
