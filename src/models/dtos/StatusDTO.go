@@ -5,5 +5,13 @@ package dtos
 
 type StatusDTO struct{
 
-	Nome string `json:"Nome"`
+	Nome string `json:"nome"`
+}
+
+
+func NewStatusDto(nome string)*StatusDTO{
+
+	return&StatusDTO{
+		Nome: nome,
+	}
 }
