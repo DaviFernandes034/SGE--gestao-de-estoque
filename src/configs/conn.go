@@ -33,6 +33,7 @@ func  conn() (*Connection, error) {
 		return nil, fmt.Errorf("erro ao abrir conexão com o banco de dados: %w", err)
 	}
 
+	//verificando a conexão
 	err = db.Ping()
 	if err != nil {
 
@@ -41,6 +42,7 @@ func  conn() (*Connection, error) {
 
 	log.Println("INFO: conexão ao banco de dados funcionando!!")
 
+	//colocanco a conexão db, na struct
 	return &Connection{
 		Db: db,
 	}, nil
