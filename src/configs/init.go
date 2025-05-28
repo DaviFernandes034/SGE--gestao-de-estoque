@@ -1,33 +1,28 @@
 package configs
 
 import (
+	
 	"fmt"
 	"log"
-
-	"github.com/joho/godotenv"
 )
 
+//struct da conexao para iniciar o banco de dados
 type InitConnection struct {
 	Conn *Connection
 }
 
-func (init *InitConnection) Init() ( error){
+func (init *InitConnection) Init() ( *Connection, error){
 
-	err:= godotenv.Load()
+
+	db, err:= conn()//função conn vindo do arquivo que carrega a inicialização do banco de dados
 	if err != nil {
-
-		return fmt.Errorf("erro ao carregar o arquivo .env: %w", err)
+		return nil, fmt.Errorf("erro ao chamar funcao Conn: %w", err)
 	}
 
-	db, err:= conn()
-	if err != nil {
-		return fmt.Errorf("erro ao chamar funcao Conn: %w", err)
-	}
-
-	log.Println("INFO: função para iniciar o banco de dados e carregar os arquivos .env")
+	log.Println("INFO: função para iniciar o banco de dados")
 	
-	init.Conn = db
+	init.Conn = db //adicionando a conexão da struct "Connection" a struct InitConnection
 
-	return nil
+	return db, nil
 
 }
