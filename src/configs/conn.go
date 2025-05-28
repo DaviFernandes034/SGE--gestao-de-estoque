@@ -40,7 +40,7 @@ func  conn() (*Connection, error) {
 		return nil, fmt.Errorf("erro ao verificar se a conexão ainda está ativa ")
 	}
 
-	log.Println("INFO: conexão ao banco de dados funcionando!!")
+	log.Println("INFO: conexão ao banco de dados feita!!")
 
 	//colocanco a conexão db, na struct
 	return &Connection{
