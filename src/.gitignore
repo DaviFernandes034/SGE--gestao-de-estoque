@@ -1,7 +1,5 @@
 .env
-SGEmodelagem.pdf
-sgebd.mdj
-Main.png
+schema.prisma
 
 
 comando para verificar se os container estar na mesma rede;

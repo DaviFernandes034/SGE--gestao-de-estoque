@@ -21,7 +21,7 @@ func main(){
 
 	var InitConnection configs.InitConnection //iniciando a inicializaçao do banco de dados
 
-	db,err := InitConnection.Init() //chamando a funcao para iniciar a conexão
+	_,err = InitConnection.Init() //chamando a funcao para iniciar a conexão
 	if err != nil {
 
 		log.Fatalf("erro ao iniciar conexão: %v", err)
