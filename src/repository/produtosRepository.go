@@ -6,38 +6,39 @@ import (
 	"github.com/DaviFernandes034/SGE--gestao-de-estoque/repository/interfaces"
 )
 
-type CategoriasRepository struct {
+type ProdutoRepository struct {
 	Repository
 }
 
 // Create implements interfaces.RepositoryCrud.
-func (c *CategoriasRepository) Create(entity models.Categorias) error {
+func (p *ProdutoRepository) Create(entity models.Produtos) error {
 	panic("unimplemented")
 }
 
 // Delete implements interfaces.RepositoryCrud.
-func (c *CategoriasRepository) Delete(entity models.Categorias) error {
+func (p *ProdutoRepository) Delete(entity models.Produtos) error {
 	panic("unimplemented")
 }
 
 // FindAll implements interfaces.RepositoryCrud.
-func (c *CategoriasRepository) FindAll() ([]models.Categorias, error) {
+func (p *ProdutoRepository) FindAll() ([]models.Produtos, error) {
 	panic("unimplemented")
 }
 
 // FindById implements interfaces.RepositoryCrud.
-func (c *CategoriasRepository) FindById(id int) (models.Categorias, error) {
+func (p *ProdutoRepository) FindById(id int) (models.Produtos, error) {
 	panic("unimplemented")
 }
 
 // Update implements interfaces.RepositoryCrud.
-func (c *CategoriasRepository) Update(entity models.Categorias) error {
+func (p *ProdutoRepository) Update(entity models.Produtos) error {
 	panic("unimplemented")
 }
 
-func NewCategoriaRepository(db *configs.Connection) interfaces.RepositoryCrud[models.Categorias] {
+func NewProdutoRepository(db *configs.Connection) interfaces.RepositoryCrud[models.Produtos] {
 
-	return &CategoriasRepository{
+	return &ProdutoRepository{
+
 		Repository: *NewRepository(db),
 	}
 }
