@@ -3,7 +3,7 @@ package repository
 import (
 	"github.com/DaviFernandes034/SGE--gestao-de-estoque/configs"
 	"github.com/DaviFernandes034/SGE--gestao-de-estoque/models"
-	"github.com/DaviFernandes034/SGE--gestao-de-estoque/repository/interfaces"
+	"github.com/DaviFernandes034/SGE--gestao-de-estoque/interfaces"
 )
 
 type CategoriasRepository struct {
